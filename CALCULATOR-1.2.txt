@@ -1,0 +1,103 @@
+package com.company;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+        System.out.print("Введите выражение: ");
+
+        int var1 = 0;
+        int var2 = 0;
+
+        int flagA = 0;
+        int flagB = 0;
+
+        String A = read.next();
+        String operator = read.next();
+        String B = read.next();
+
+        String [] RomeTo100 = {" ", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX",
+                               "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX",
+                               "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX",
+                               "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX",
+                               "XL", "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX",
+                               "L", "LI", "LII", "LIII", "LIV", "LV", "LVI", "LVII", "LVIII", "LIX",
+                               "LX", "LXI", "LXII", "LXIII", "LXIV", "LXV", "LXVI", "LXVII", "LXVIII", "LXIX",
+                               "LXX", "LXXI", "LXXII", "LXXIII", "LXXIV", "LXXV", "LXXVI", "LXXVII", "LXXVIII", "LXXIX",
+                               "LXXX", "LXXXI", "LXXXII", "LXXXIII", "LXXXIV", "LXXXV", "LXXXVI", "LXXXVII", "LXXXVIII", "LXXXIX",
+                               "XC", "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX",
+                               "C"};
+
+        String [] Arab = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+
+        for (int n = 0; n < 11; n++) {
+            if (Arab[n].equals(A)) {
+                var1 = n;
+            }
+            if (RomeTo100[n].equals(A)) {
+                var1 = n;
+                flagA = 1;
+            }
+        }
+
+        for (int m = 0; m < 11; m++) {
+            if (Arab[m].equals(B)) {
+                var2 = m;
+            }
+            if (RomeTo100[m].equals(B)) {
+                var2 = m;
+                flagB = 1;
+            }
+        }
+
+        if ((flagA == 0) && (flagB == 1) || (flagA == 1) && (flagB == 0) || var1 < 1 || var1 > 10  || var2 < 1 || var2 > 10) {
+            System.out.println("ОШИБКА!");
+        }
+        else {
+            if ((flagA == 0) && (flagB == 0)) {
+                if (operator.equals("*")) {
+                    System.out.println("Ответ: " + (var1 * var2));
+                }
+                if (operator.equals("/")) {
+                    System.out.println("Ответ: " + (var1 / var2));
+                }
+                if (operator.equals("+")) {
+                    System.out.println("Ответ: " + (var1 + var2));
+                }
+                if (operator.equals("-")) {
+                    System.out.println("Ответ: " + (var1 - var2));
+                }
+            }
+
+            if ((flagA == 1) && (flagB == 1)) {
+                if (operator.equals("*")) {
+                    if ((var1 * var2) < 0) {
+                        System.out.println("Ответ: -" + (RomeTo100[var2 * var1]));
+                    } else {
+                        System.out.println("Ответ: " + (RomeTo100[var1 * var2]));
+                    }
+                }
+                if (operator.equals("/")) {
+                    if ((var1 / var2) < 0) {
+                        System.out.println("Ответ: -" + (RomeTo100[var2 / var1]));
+                    } else {
+                        System.out.println("Ответ: " + (RomeTo100[var1 / var2]));
+                    }
+                }
+                if (operator.equals("+")) {
+                    if ((var1 + var2) < 0) {
+                        System.out.println("Ответ: -" + (RomeTo100[var1 + var2]));
+                    } else {
+                        System.out.println("Ответ: " + (RomeTo100[var1 + var2]));
+                    }
+                }
+                if (operator.equals("-")) {
+                    if ((var1 - var2) < 0) {
+                        System.out.println("Ответ: -" + (RomeTo100[var2 - var1]));
+                    } else {
+                        System.out.println("Ответ: " + (RomeTo100[var1 - var2]));
+                    }
+                }
+            }
+        }
+    }
+}
